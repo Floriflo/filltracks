@@ -1,11 +1,10 @@
 public class Case {
-    int posx, posy; // position dans le tableau
+    Position position; // position dans le tableau
     TypeCase type;
 
     Case(int px, int py, char t){
-        posx = px;
-        posy = py;
-        SetTypeFromChar(t);
+        position = new Position(px, py);
+        setTypeFromChar(t);
         // assigne les valeurs posx posy et type à partir de la lecture du fichier
     }
 
@@ -15,7 +14,7 @@ public class Case {
      * Si la case était un case spéciale double ou bloc, elle devient libre
      * Si c'est un mur, on ne fait rien
      */
-    void ChangeType(Case C){
+    void changeType(Case C){
         if(C.type == TypeCase.EMPTY){
             C.type = TypeCase.WALL;
         } else {
@@ -25,7 +24,7 @@ public class Case {
         }
     }
 
-    void SetTypeFromChar(char t){
+    void setTypeFromChar(char t){
         String ty = String.valueOf(t);
 
         if (t == 'o'){
@@ -48,15 +47,11 @@ public class Case {
         }*/
     }
 
-    int GetX(){
-        return this.posx;
+    Position getPosition(){
+        return position;
     }
 
-    int GetY(){
-        return this.posy;
-    }
-
-    TypeCase GetType(){
+    TypeCase getType(){
         return this.type;
     }
 }
