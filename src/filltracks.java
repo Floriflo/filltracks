@@ -6,147 +6,25 @@ public class filltracks {
 	static int posX = 4, posY = 1;
 	
 	public static void main(String[] args) {
+		// Initialise the Game
+		Game filltracks = new Game();
+
 		// Lancement du jeu
-		InitGame();
-		DisplayGameGrid();
+		filltracks.field.DisplayGameGrid();
+		filltracks.MoveRight();
+		filltracks.field.DisplayGameGrid();
+		filltracks.MoveUp();
+		filltracks.field.DisplayGameGrid();
+		filltracks.MoveLeft();
+		filltracks.field.DisplayGameGrid();
 	}
 	
-	/*
-	 * MoveDown watch the next down case and move the player if possible
-	 * If it's not possible, do nothing
-	 * In case of a special case block, it does nothing for the player position but destroy the down case
-	 * In case of a special case passage, it put the player on this case but put this one to open case, the next call to a move will fix the 'j' position in the grid
+	/* TO DO : Do it with a FileReader .txt to init the gameGrid
+	 * DONE : Florian did the FileReader with the class Parser.java
+	 * This function don't belong to exist now
 	 */
-	static void MoveDown() {
-		for(int j = posX-1; j < rows-1; j++) {	
-				switch(grid[j+1][posY-1]) {
-				case 'x':
-					return;
-				case 'o':
-					if(grid[j][posY-1] == 'j') {
-						grid[j][posY-1] = 'x'; // maj Player initial position replaced by a wall 
-						grid[j+1][posY-1] = 'j'; //maj new Player position
-						posX += 1; //maj new Player position
-					}
-					else {
-						grid[j+1][posY-1] = 'j'; //maj new Player position
-						posX += 1; //maj new Player position
-					}
-					break;
-				case 'w':
-					grid[j+1][posY-1] = 'o'; // maj right case to open case because special case block disapear when touched
-					return;
-				case 'p':
-					grid[j][posY-1] = 'x'; // maj Player initial position replaced by a wall 
-					grid[j+1][posY-1] = 'o'; //maj new Player position is open case because it's a special case with become open case if touched (you can go throught and left behind an open case
-					posX += 1; //maj var posY*/
-					break;
-				}
-			}
-	}
-	
+
 	/*
-	 * MoveUp watch the next up case and move the player if possible
-	 * If it's not possible, do nothing
-	 * In case of a special case block, it does nothing for the player position but destroy the up case
-	 * In case of a special case passage, it put the player on this case but put this one to open case, the next call to a move will fix the 'j' position in the grid
-	 */
-	static void MoveUp() {
-		for(int j = posX-1; j > 0; j--) {	
-				switch(grid[j-1][posY-1]) {
-				case 'x':
-					return;
-				case 'o':
-					if(grid[j][posY-1] == 'j') {
-						grid[j][posY-1] = 'x'; // maj Player initial position replaced by a wall 
-						grid[j-1][posY-1] = 'j'; //maj new Player position
-						posX -= 1; //maj new Player position
-					}
-					else {
-						grid[j-1][posY-1] = 'j'; //maj new Player position
-						posX -= 1; //maj new Player position
-					}
-					break;
-				case 'w':
-					grid[j-1][posY-1] = 'o'; // maj right case to open case because special case block disapear when touched
-					return;
-				case 'p':
-					grid[j][posY-1] = 'x'; // maj Player initial position replaced by a wall 
-					grid[j-1][posY-1] = 'o'; //maj new Player position is open case because it's a special case with become open case if touched (you can go throught and left behind an open case
-					posX -= 1; //maj var posY*/
-					break;
-				}
-			}
-	}
-	
-	/*
-	 * MoveLeft watch the next left case and move the player if possible
-	 * If it's not possible, do nothing
-	 * In case of a special case block, it does nothing for the player position but destroy the left case
-	 * In case of a special case passage, it put the player on this case but put this one to open case, the next call to a move will fix the 'j' position in the grid
-	 */
-	static void MoveLeft() {
-		for(int j = posY-1; j > 0; j--) {	
-				switch(grid[posX-1][j-1]) {
-				case 'x':
-					return;
-				case 'o':
-					if(grid[posX-1][j] == 'j') {
-						grid[posX-1][j] = 'x'; // maj Player initial position replaced by a wall 
-						grid[posX-1][j-1] = 'j'; //maj new Player position
-						posY -= 1; //maj new Player position
-					}
-					else {
-						grid[posX-1][j-1] = 'j'; //maj new Player position
-						posY -= 1; //maj new Player position
-					}
-					break;
-				case 'w':
-					grid[posX-1][j-1] = 'o'; // maj right case to open case because special case block disapear when touched
-					return;
-				case 'p':
-					grid[posX-1][j] = 'x'; // maj Player initial position replaced by a wall 
-					grid[posX-1][j-1] = 'o'; //maj new Player position is open case because it's a special case with become open case if touched (you can go throught and left behind an open case
-					posY -= 1; //maj var posY*/
-					break;
-				}
-			}
-	}
-	/*
-	 * MoveRight watch the next right case and move the player if possible
-	 * If it's not possible, do nothing
-	 * In case of a special case block, it does nothing for the player position but destroy the right case
-	 * In case of a special case passage, it put the player on this case but put this one to open case, the next call to a move will fix the 'j' position in the grid
-	 */
-	static void MoveRight() {
-			for(int j = posY-1; j < cols-1; j++) {	
-					switch(grid[posX-1][j+1]) {
-					case 'x':
-						return;
-					case 'o':
-						if(grid[posX-1][j] == 'j') {
-							grid[posX-1][j] = 'x'; // maj Player initial position replaced by a wall 
-							grid[posX-1][j+1] = 'j'; //maj new Player position
-							posY += 1; //maj new Player position
-						}
-						else {
-							grid[posX-1][j+1] = 'j'; //maj new Player position
-							posY += 1; //maj new Player position
-						}
-						break;
-					case 'w':
-						grid[posX-1][j+1] = 'o'; // maj right case to open case because special case block disapear when touched
-						return;
-					case 'p':
-						grid[posX-1][j] = 'x'; // maj Player initial position replaced by a wall 
-						grid[posX-1][j+1] = 'o'; //maj new Player position is open case because it's a special case with become open case if touched (you can go throught and left behind an open case
-						posY += 1; //maj var posY*/
-						break;
-					}
-				}
-	}
-	
-	// Do it with a FileReader .txt to init the gameGrid
 	static void InitGame() {
 		
 		for(int i = 0; i < rows; i++) {
@@ -161,8 +39,15 @@ public class filltracks {
 		grid[2][0]='x';
 		grid[2][1]='x';
 	}
-	
+	*/
+
 	// Display the game grid with prints
+	/*
+	 * These functions belong to the class Field because it display the field of the game
+	 * I moved this function in the class Field and adapted to the Case map[][] with the class Case
+	 */
+	
+	/*
 	static void DisplayGameGrid() {
 		// System.out.println("nbLines = " + rows + " et nbCols = " + cols);
 		for(int i = 0; i < rows; i++) {
@@ -176,4 +61,5 @@ public class filltracks {
 	static void Line() {
 		System.out.println("-------------------------------------------");
 	}
+	*/
 }
