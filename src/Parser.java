@@ -37,6 +37,7 @@ public class Parser {
              */
             for(int j=0 ; j <= 7 ; j++){
                 content_char = (char) fr.read();
+
                 if (j == 0){
                     yMaxMap = Character.getNumericValue(content_char);
                 } else if (j == 2){
@@ -80,8 +81,10 @@ public class Parser {
             e.printStackTrace();
         }
 
-        player.position.setX(xPosPlayeur);
-        player.position.setY(yPosPlayeur);
-        field.Field(xMaxMap, yMaxMap, maplevel);
+        player.position.setX(yPosPlayeur);
+        player.position.setY(xPosPlayeur);
+        maplevel[yPosPlayeur-1][xPosPlayeur-1].temp = 'j';
+        System.out.println(yPosPlayeur + "px "+xPosPlayeur+" y .");
+        field.Init(yMaxMap, xMaxMap, maplevel);
     }
 }
