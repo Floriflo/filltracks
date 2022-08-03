@@ -1,6 +1,7 @@
 public class Case {
     Position position; // position dans le tableau
     TypeCase type;
+    char temp;
 
     Case(int px, int py, char t){
         position = new Position(px, py);
@@ -14,7 +15,7 @@ public class Case {
      * Si la case était un case spéciale double ou bloc, elle devient libre
      * Si c'est un mur, on ne fait rien
      */
-    void changeType(Case C){
+    /*void changeType(Case C){
         if(C.type == TypeCase.EMPTY){
             C.type = TypeCase.WALL;
         } else {
@@ -22,18 +23,23 @@ public class Case {
                 C.type = TypeCase.SPECIAL;
             }
         }
-    }
+    }*/
 
     void setTypeFromChar(char t){
-        String ty = String.valueOf(t);
-
+        //String ty = String.valueOf(t);
+        // Adding this line to print the Field
+        this.temp = t;
         if (t == 'o'){
             this.type = TypeCase.EMPTY;
-        } else{
+        } else {
             if (t == 'x'){
                 this.type = TypeCase.WALL;
-            }else {
-                this.type = TypeCase.SPECIAL;
+            } else {
+                if(t == 'w'){
+                    this.type = TypeCase.SPECIAL_BLOCK;
+                } else {
+                    this.type = TypeCase.SPECIAL_PASSAGE;
+                }
             }
         }
         /*
