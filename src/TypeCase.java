@@ -1,3 +1,3 @@
 public enum TypeCase {
-    EMPTY, WALL, SPECIAL;
+    EMPTY, WALL, SPECIAL_BLOCK, SPECIAL_PASSAGE;
 }
