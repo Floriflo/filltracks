@@ -1,14 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        test_build_levels();
+        testBuildLevel();
 
         System.out.println("\nHello world!");
     }
 
-    public static void test_build_levels() {
+    public static void testBuildLevel() {
         String folder_levels = "./Levels";
 
-        Parser parser = new Parser(folder_levels);
-        parser.build_levels();
+        Game game = new Game();
     }
 }
