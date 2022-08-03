@@ -1,13 +1,23 @@
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-        testBuildLevel();
-
-        System.out.println("\nHello world!");
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGui();
+            }
+        });
     }
 
-    public static void testBuildLevel() {
-        String folder_levels = "./Levels";
+    private static void createAndShowGui() {
+        Window mainPanel = new Window();
 
-        Game game = new Game();
+        JFrame frame = new JFrame("KeyBindingEg");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(mainPanel);
+        frame.pack();
+        frame.setLocationByPlatform(true);
+        frame.addKeyListener(mainPanel.keyPressObj);
+        frame.setVisible(true);
     }
 }

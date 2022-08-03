@@ -1,10 +1,8 @@
+6
 8
-6
-6
-2
 oooooooo
 oxoooooo
 oooooxox
 ooxxoxox
 oooooxox
-ooooooox
+ojooooox

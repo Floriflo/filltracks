@@ -1,8 +1,12 @@
 public class Case {
-    Position position; // position dans le tableau
-    TypeCase type;
+    private Position position = new Position(); // position dans le tableau
+    private TypeCase type = TypeCase.EMPTY;
 
-    Case(int px, int py, char t){
+    public Case() {
+
+    }
+
+    public Case(int px, int py, char t){
         position = new Position(px, py);
         setTypeFromChar(t);
         // assigne les valeurs posx posy et type à partir de la lecture du fichier
@@ -14,17 +18,15 @@ public class Case {
      * Si la case était un case spéciale double ou bloc, elle devient libre
      * Si c'est un mur, on ne fait rien
      */
-    void changeType(Case C){
+    public static void changeType(Case C){
         if(C.type == TypeCase.EMPTY){
-            C.type = TypeCase.WALL;
-        } else {
-            if(C.type == TypeCase.SPECIAL || C.type == TypeCase.WALL){
-                C.type = TypeCase.SPECIAL;
-            }
+            C.type = TypeCase.PLAYER;
+        } else { // If player or SPECIALBLOCK or SPECIALPASSAGE the box becomes empty
+            C.type = TypeCase.EMPTY;
         }
     }
 
-    void setTypeFromChar(char t){
+    public void setTypeFromChar(char t){
         String ty = String.valueOf(t);
 
         if (t == 'o'){
@@ -33,7 +35,15 @@ public class Case {
             if (t == 'x'){
                 this.type = TypeCase.WALL;
             }else {
-                this.type = TypeCase.SPECIAL;
+                if (t == 'w') {
+                    this.type = TypeCase.SPECIALBLOCK;
+                } else {
+                    if (t == 'j') {
+                        this.type = TypeCase.PLAYER;
+                    } else {
+                        this.type = TypeCase.SPECIALPASSAGE;
+                    }
+                }
             }
         }
         /*
@@ -47,11 +57,15 @@ public class Case {
         }*/
     }
 
-    Position getPosition(){
+    public Position getPosition(){
         return position;
     }
 
-    TypeCase getType(){
+    public TypeCase getType(){
         return this.type;
+    }
+
+    public void setType(TypeCase type){
+        this.type = type;
     }
 }

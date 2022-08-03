@@ -15,15 +15,15 @@ public class Field {
     }
 
 
-    int getWidth(){
+    public int getWidth(){
         return width;
     }
 
-    int getHeight(){
+    public int getHeight(){
         return height;
     }
 
-    Case[][] getMap(){
+    public Case[][] getMap(){
         return map;
     }
 }

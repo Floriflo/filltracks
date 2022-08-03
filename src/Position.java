@@ -1,6 +1,6 @@
 public class Position {
-    int x = 0;
-    int y = 0;
+    private int x = 0;
+    private int y = 0;
 
     public Position() {
 
