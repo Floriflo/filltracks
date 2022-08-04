@@ -18,11 +18,10 @@ public class Game {
         // return ((x >= 0) && (x <= this.field.getWidth()) && (y >= 0) && (y <= this.field.getHeight())); //&& (this.field.map[y][x].getType() == com.filltracks.TypeCase.EMPTY));
     }
 
-    public boolean moveplayer(Direction dir){
+    public void moveplayer(Direction dir){
         int playerFuturePositionX, playerFuturePositionY;
         int playerActualPositionX = this.player.position.getX();
         int playerActualPositionY = this.player.position.getY();
-        boolean boolPositionValidity = false;
 
         /*
         We look in which direction the player is moving
@@ -44,30 +43,32 @@ public class Game {
             Case playerActualCase = field.map[playerActualPositionY][playerActualPositionX];
 
             switch (playerFutureCase.getType()) {
-                case EMPTY -> {
+                case EMPTY: {
                     // Returns the player's com.filltracks.Case to "empty"
                     playerActualCase.setType(TypeCase.TRACKPLAYER);
                     // Turns the futur player's com.filltracks.Case to "com.filltracks.Player"
                     playerFutureCase.setType(TypeCase.PLAYER);
                     this.player.position.setX(playerFuturePositionX);
                     this.player.position.setY(playerFuturePositionY);
-                    boolPositionValidity = true;
+                    break;
                 }
-                case WALL, TRACKPLAYER -> {
+                case WALL, TRACKPLAYER, PLAYER: {
+                    break;
                 }
-                case SPECIALBLOCK -> // Turns the SPECIALBLOCK into "empty" com.filltracks.Case
+                case SPECIALBLOCK: { // Turns the SPECIALBLOCK into "empty" com.filltracks.Case
                     playerFutureCase.setType(TypeCase.EMPTY);
-                case SPECIALPASSAGE -> { // TODO : Check what we need to do with this one
+                    break;
+                }
+                case SPECIALPASSAGE: { // TODO : Check what we need to do with this one
                     // Returns the player's com.filltracks.Case to "empty"
                     playerActualCase.setType(TypeCase.TRACKPLAYER);
                     // Turns the futur player's com.filltracks.Case to "com.filltracks.Player"
                     playerFutureCase.setType(TypeCase.PLAYER);
                     this.player.position.setX(playerFuturePositionX);
                     this.player.position.setY(playerFuturePositionY);
+                    break;
                 }
             }
         }
-
-        return boolPositionValidity;
     }
 }

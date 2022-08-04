@@ -50,13 +50,31 @@ public class Window extends JPanel {
 
                 // Color the rectangle the right color
                 switch (game.field.map[y][x].getType()) {
-                    case PLAYER -> g.setColor(Color.RED);
+                    case PLAYER: {
+                        g.setColor(Color.RED);
+                        break;
+                    }
 
-                    case EMPTY -> g.setColor(Color.WHITE);
-                    case WALL -> g.setColor(new Color(139, 69, 19));
-                    case TRACKPLAYER -> g.setColor(Color.PINK);
-                    case SPECIALBLOCK -> g.setColor(Color.BLACK);
-                    case SPECIALPASSAGE -> g.setColor(Color.YELLOW);
+                    case EMPTY: {
+                        g.setColor(Color.WHITE);
+                        break;
+                    }
+                    case WALL: {
+                        g.setColor(new Color(139, 69, 19));
+                        break;
+                    }
+                    case TRACKPLAYER: {
+                        g.setColor(Color.PINK);
+                        break;
+                    }
+                    case SPECIALBLOCK: {
+                        g.setColor(Color.BLACK);
+                        break;
+                    }
+                    case SPECIALPASSAGE: {
+                        g.setColor(Color.YELLOW);
+                        break;
+                    }
                 }
 
                 // Draw square with correct coordinate and width/height
