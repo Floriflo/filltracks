@@ -10,8 +10,11 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-// @SuppressWarnings("serial")
+/**
+ * Class to manage the display of the game on the graphical interface
+ */
 public class Window extends JPanel {
+    boolean verboseDebug = true;
     public static final int CASE_WIDTH = 100;
     public static final int CASE_HEIGHT = CASE_WIDTH;
 
@@ -23,17 +26,28 @@ public class Window extends JPanel {
 
     protected Game game;
 
+    /**
+     * Window class constructor
+     */
     public Window() {
         this.game = new Game(); // Create new com.filltracks.Game Object
 
         this.add(this.labelPosition); // add label1 to JFrame
     }
 
+    /**
+     * Returns the window's preferred dimensions in a dimension object
+     * @return a Dimension
+     */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(PREF_W, PREF_H);
     }
 
+    /**
+     * Allows you to "paint" items in the window from a copy of the window's Graphics object
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -79,35 +93,52 @@ public class Window extends JPanel {
 
                 // Draw square with correct coordinate and width/height
                 g.fillRect(positionCaseX, positionCaseY, CASE_WIDTH, CASE_HEIGHT);
-                System.out.println("(" + x + ", " + y + ") : " + game.field.map[y][x].getType()
-                        + " : (" + positionCaseX + ", " + positionCaseY + ")");
+
+                if (verboseDebug) {
+                    System.out.println("(" + x + ", " + y + ") : " + game.field.map[y][x].getType()
+                            + " : (" + positionCaseX + ", " + positionCaseY + ")");
+                }
             }
         }
 
-        labelPosition.setText("com.filltracks.Position Joueur : X : " + game.player.position.getX() + " Y : " + game.player.position.getY());
+        if (verboseDebug) {
+            labelPosition.setText("com.filltracks.Position Joueur : X : " + game.player.position.getX() + " Y : " + game.player.position.getY());
+        }
     }
 
+    /**
+     * Method to retrieve keys pressed by player
+     */
     private class KeyPress extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             int keyCode = e.getKeyCode();
             if (keyCode == Direction.UP.getKeyCode()) {
                 game.moveplayer(Direction.UP);
-                System.out.println("Up Arrrow-Key is pressed!");
+                if (verboseDebug) {
+                    System.out.println("Up Arrrow-Key is pressed!");
+                }
             }
             else if (keyCode == Direction.DOWN.getKeyCode()) {
                 game.moveplayer(Direction.DOWN);
-                System.out.println("Down Arrrow-Key is pressed!");
+                if (verboseDebug) {
+                    System.out.println("Down Arrrow-Key is pressed!");
+                }
             }
             else if (keyCode == Direction.LEFT.getKeyCode()) {
                 game.moveplayer(Direction.LEFT);
-                System.out.println("Left Arrrow-Key is pressed!");
+                if (verboseDebug) {
+                    System.out.println("Left Arrrow-Key is pressed!");
+                }
             }
             else if (keyCode == Direction.RIGHT.getKeyCode()) {
                 game.moveplayer(Direction.RIGHT);
-                System.out.println("Right Arrrow-Key is pressed!");
+                if (verboseDebug) {
+                    System.out.println("Right Arrrow-Key is pressed!");
+                }
             }
 
+            // Call the method to update the display
             repaint();
         }
     }

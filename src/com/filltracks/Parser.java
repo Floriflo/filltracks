@@ -4,16 +4,28 @@ import java.io.File;  // Import the File class
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Class allowing to parse the different files of levels, configurations...
+ */
 public class Parser {
-    // TODO : Add doc everywhere and change comment in french to english
     String folder_levels = "";
-    boolean verboseDebug = true; // TODO : Add to config -> put in logger
+    boolean verboseDebug = true; // TODO : Add to config and create -> put in logger
 
+    /**
+     * Parser class constructor
+     * @param folder_le String representing the path of the folder containing the game levels
+     */
     public Parser(String folder_le) {
         this.folder_levels = folder_le;
     }
 
+
+    /**
+     * Method to create a level from a text file
+     * @param levelNumber Game level number
+     * @param field Object representing the Field of the level
+     * @param player Object representing the player
+     */
     public void buildLevel(int levelNumber, Field field, Player player) {
         Case[][] maplevel = new Case[0][0];
 
@@ -43,11 +55,7 @@ public class Parser {
                     yMaxMap = Character.getNumericValue(content_char);
                 } else if (j == 2){
                     xMaxMap = Character.getNumericValue(content_char);
-                } /*else if (j == 4) {
-                    yPosPlayeur = Character.getNumericValue(content_char);
-                } else if (j == 6) {
-                    xPosPlayeur = Character.getNumericValue(content_char);
-                }*/
+                }
             }
 
             // Initialize the size of the array to store the map
@@ -58,8 +66,8 @@ public class Parser {
                 type_case = (char) content;
 
                 /*
-                  If we reach the end of the line, we reset the positions
-                  Otherwise we add the com.filltracks.Case in the array of the map
+                 If we reach the end of the line, we reset the positions
+                 Otherwise we add the com.filltracks.Case in the array of the map
                 */
                 if (content == 10){
                     y++;
