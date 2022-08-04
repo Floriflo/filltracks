@@ -1,3 +1,5 @@
+package com.filltracks;
+
 public class Player {
     Position position = new Position(); // position dans le tableau
 

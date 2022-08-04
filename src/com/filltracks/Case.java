@@ -1,3 +1,5 @@
+package com.filltracks;
+
 public class Case {
     private Position position = new Position(); // position dans le tableau
     private TypeCase type = TypeCase.EMPTY;

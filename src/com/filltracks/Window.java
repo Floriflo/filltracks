@@ -1,9 +1,8 @@
+package com.filltracks;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.util.EnumMap;
-import java.util.Map;
 
 
 import java.awt.event.KeyAdapter;
@@ -25,7 +24,7 @@ public class Window extends JPanel {
     protected Game game;
 
     public Window() {
-        this.game = new Game(); // Create new Game Object
+        this.game = new Game(); // Create new com.filltracks.Game Object
 
         this.add(this.labelPosition); // add label1 to JFrame
     }
@@ -43,7 +42,7 @@ public class Window extends JPanel {
 
         System.out.println();
 
-        // We draw the Case of the field
+        // We draw the com.filltracks.Case of the field
         for (int y = 0; y < game.field.getHeight(); y++){
             for (int x = 0; x < game.field.getWidth(); x++) {
                 positionCaseX = CASE_WIDTH *x;
@@ -59,7 +58,7 @@ public class Window extends JPanel {
                     case SPECIALBLOCK -> g.setColor(Color.BLACK);
                     case SPECIALPASSAGE -> g.setColor(Color.YELLOW);
                 }
-                
+
                 // Draw square with correct coordinate and width/height
                 g.fillRect(positionCaseX, positionCaseY, CASE_WIDTH, CASE_HEIGHT);
                 System.out.println("(" + x + ", " + y + ") : " + game.field.map[y][x].getType()
@@ -67,7 +66,7 @@ public class Window extends JPanel {
             }
         }
 
-        labelPosition.setText("Position Joueur : X : " + game.player.position.getX() + " Y : " + game.player.position.getY());
+        labelPosition.setText("com.filltracks.Position Joueur : X : " + game.player.position.getX() + " Y : " + game.player.position.getY());
     }
 
     private class KeyPress extends KeyAdapter {

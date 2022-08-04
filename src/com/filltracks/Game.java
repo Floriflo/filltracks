@@ -1,3 +1,5 @@
+package com.filltracks;
+
 public class Game {
     Field field = new Field();
     Player player = new Player();
@@ -7,13 +9,13 @@ public class Game {
     public Game() {
         this.folder_levels = "./Levels";
         this.parser = new Parser(folder_levels);
-        this.parser.buildLevel(2, field, player);
+        this.parser.buildLevel(1, field, player);
     }
 
     public boolean posValide(int x, int y) {
         boolean first = x >= 0, second = x < this.field.getWidth(), third = y >= 0, fourth = y < this.field.getHeight();
         return (first && second && third && fourth);
-        // return ((x >= 0) && (x <= this.field.getWidth()) && (y >= 0) && (y <= this.field.getHeight())); //&& (this.field.map[y][x].getType() == TypeCase.EMPTY));
+        // return ((x >= 0) && (x <= this.field.getWidth()) && (y >= 0) && (y <= this.field.getHeight())); //&& (this.field.map[y][x].getType() == com.filltracks.TypeCase.EMPTY));
     }
 
     public boolean moveplayer(Direction dir){
@@ -37,15 +39,15 @@ public class Game {
         Otherwise we do nothing and we return false
         */
         if (posValide(playerFuturePositionX, playerFuturePositionY)){
-            // TODO : Add new type case in Case methods
+            // TODO : Add new type case in com.filltracks.Case methods
             Case playerFutureCase = field.map[playerFuturePositionY][playerFuturePositionX];
             Case playerActualCase = field.map[playerActualPositionY][playerActualPositionX];
 
             switch (playerFutureCase.getType()) {
                 case EMPTY -> {
-                    // Returns the player's Case to "empty"
+                    // Returns the player's com.filltracks.Case to "empty"
                     playerActualCase.setType(TypeCase.TRACKPLAYER);
-                    // Turns the futur player's Case to "Player"
+                    // Turns the futur player's com.filltracks.Case to "com.filltracks.Player"
                     playerFutureCase.setType(TypeCase.PLAYER);
                     this.player.position.setX(playerFuturePositionX);
                     this.player.position.setY(playerFuturePositionY);
@@ -53,12 +55,12 @@ public class Game {
                 }
                 case WALL, TRACKPLAYER -> {
                 }
-                case SPECIALBLOCK -> // Turns the SPECIALBLOCK into "empty" Case
+                case SPECIALBLOCK -> // Turns the SPECIALBLOCK into "empty" com.filltracks.Case
                     playerFutureCase.setType(TypeCase.EMPTY);
                 case SPECIALPASSAGE -> { // TODO : Check what we need to do with this one
-                    // Returns the player's Case to "empty"
+                    // Returns the player's com.filltracks.Case to "empty"
                     playerActualCase.setType(TypeCase.TRACKPLAYER);
-                    // Turns the futur player's Case to "Player"
+                    // Turns the futur player's com.filltracks.Case to "com.filltracks.Player"
                     playerFutureCase.setType(TypeCase.PLAYER);
                     this.player.position.setX(playerFuturePositionX);
                     this.player.position.setY(playerFuturePositionY);

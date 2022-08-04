@@ -1,3 +1,5 @@
+package com.filltracks;
+
 import java.io.File;  // Import the File class
 import java.io.FileReader;
 import java.io.IOException;
@@ -57,7 +59,7 @@ public class Parser {
 
                 /*
                   If we reach the end of the line, we reset the positions
-                  Otherwise we add the Case in the array of the map
+                  Otherwise we add the com.filltracks.Case in the array of the map
                 */
                 if (content == 10){
                     y++;
