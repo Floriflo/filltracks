@@ -52,7 +52,13 @@ public class Game {
                     this.player.position.setY(playerFuturePositionY);
                     break;
                 }
-                case WALL, TRACKPLAYER, PLAYER: {
+                case WALL: {
+                    break;
+                }
+                case TRACKPLAYER: {
+                    break;
+                }
+                case PLAYER: {
                     break;
                 }
                 case SPECIALBLOCK: { // Turns the SPECIALBLOCK into "empty" com.filltracks.Case
